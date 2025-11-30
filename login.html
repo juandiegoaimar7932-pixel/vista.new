@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login — Galería Creativa</title>
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-card" role="main" aria-labelledby="auth-title">
+      <div class="brand">
+        <div class="logo">VT</div>
+        <div>
+          <div class="brand-name">VISTA</div>
+          <div class="brand-sub muted">Accede a tu cuenta</div>
+        </div>
+      </div>
+
+      <h2 id="auth-title">Bienvenido</h2>
+
+
+      <div class="tabs" role="tablist" aria-label="Auth tabs">
+        <button class="tab active" data-tab="login" role="tab" aria-selected="true">Iniciar sesión</button>
+        <button class="tab" data-tab="register" role="tab" aria-selected="false">Registrarse</button>
+      </div>
+
+
+      <div class="tab-panel active" id="tab-login" role="tabpanel">
+        <input type="email" id="login-email" placeholder="Correo electrónico" autocomplete="email" />
+        <input type="password" id="login-pass" placeholder="Contraseña" autocomplete="current-password" />
+
+        <button class="btn btn-primary" id="btn-login">Iniciar sesión</button>
+
+        <div class="divider">o</div>
+
+        <button class="btn btn-ghost" id="btn-google-login">
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18" height="18" alt="">
+          Iniciar con Google
+        </button>
+      </div>
+
+  
+      <div class="tab-panel" id="tab-register" role="tabpanel" aria-hidden="true">
+        <input type="text" id="reg-name" placeholder="Nombre" autocomplete="given-name" />
+        <input type="text" id="reg-last" placeholder="Apellido" autocomplete="family-name" />
+        <input type="text" id="reg-dni" placeholder="DNI" inputmode="numeric" />
+        <input type="email" id="reg-email" placeholder="Correo electrónico" autocomplete="email" />
+        <input type="password" id="reg-pass" placeholder="Contraseña (mín. 6 caracteres)" autocomplete="new-password" />
+        <input type="password" id="reg-pass2" placeholder="Repetir contraseña" autocomplete="new-password" />
+
+        <button class="btn btn-primary" id="btn-register">Registrarme</button>
+
+        <div class="divider">o</div>
+
+        <button class="btn btn-ghost" id="btn-google-register">
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18" height="18" alt="">
+          Registrarme con Google
+        </button>
+      </div>
+
+      <p class="msg" id="auth-msg" aria-live="polite"></p>
+
+      <footer>
+        <small class="muted">Al registrarte aceptas los términos — Demo educativa</small>
+      </footer>
+    </div>
+  </div>
+
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+
+
+  <script src="login.js"></script>
+</body>
+</html>

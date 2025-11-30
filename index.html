@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Marketplace estudiantil</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="galeria_vista.css">
+</head>
+<body>
+  <!-- ///Botón de cerrar sesión -->
+  <button id="btn-logout" class="btn-logout">Cerrar sesión</button>
+
+  <div class="app" id="app">
+
+    <header>
+      <div class="brand">
+    <div class="logo">VT</div> 
+    <div>
+      <div class="site-title">Vista</div> <div class="muted" style="font-size:12px">Marketplace Estudiantil</div>
+    </div>
+  </div>
+
+      <nav>
+        <a href="#" data-link="home" class="nav-link active">Inicio</a>
+        <a href="#" data-link="gallery" class="nav-link">Galería</a>
+        <a href="#" data-link="publish" class="nav-link">Publicar</a>
+        <button class="btn btn-primary" id="btn-explore">Explorar galería</button>
+      </nav>
+    </header>
+
+    <!-- Carrito en el header -->
+    <button id="btn-cart" class="cart-btn">
+      🛒 <span id="cart-count">0</span>
+    </button>
+
+    <main id="view-home" class="view active">
+      <section class="hero">
+        <h1>Muestra tu talento, vende tus creaciones</h1>
+        <p class="muted">Galería Creativa es un marketplace donde estudiantes muestran arte, diseño, software, ilustraciones y más.</p>
+        <div style="display:flex;gap:10px;align-items:center;margin-top:8px">
+          <button class="btn btn-primary" id="home-explore">Explorar galería</button>
+          <a href="#" class="muted" id="home-cta" style="text-decoration:none">Descubre trabajos recientes →</a>
+        </div>
+      </section>
+
+      <section style="margin-top:18px;">
+        <h3 style="margin:0 0 8px 0">Destacados</h3>
+        <div class="grid" id="featured-grid"></div>
+      </section>
+    </main>
+
+    <section id="view-gallery" class="view" aria-hidden>
+      <div class="controls">
+        <div class="search" role="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="6" stroke="#6b7280" stroke-width="1.5"/></svg>
+          <input id="search-input" placeholder="Buscar por título, autor, categoría..." />
+        </div>
+
+        <div class="filters">
+          <select id="filter-cat" class="select">
+            <option value="">Todas categorías</option>
+            <option>Arte</option>
+            <option>Diseño</option>
+            <option>Software</option>
+            <option>Ilustración</option>
+            <option>Fotografía</option>
+            <option>Mecanica</option>
+            <option>hardware</option>
+          </select>
+
+          <select id="filter-sort" class="select">
+            <option value="popular">Más populares</option>
+            <option value="price-asc">Precio: menor</option>
+            <option value="price-desc">Precio: mayor</option>
+            <option value="new">Recientes</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid" id="gallery-grid"></div>
+
+      <div class="view-more" style="margin-top:12px">
+        <button class="btn btn-ghost" id="load-more">Ver más</button>
+      </div>
+    </section>
+
+    <section id="view-detail" class="view" aria-hidden>
+      <div class="detail">
+        <div>
+          <img src="" alt="Detalle" id="detail-img" class="detail-image" />
+        </div>
+        
+        <aside>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div>
+              <h2 id="detail-title" style="margin:0 0 4px 0"></h2>
+              <div class="muted" id="detail-author"></div>
+            </div>
+            <div style="text-align:right">
+              <div class="price" id="detail-price"></div>
+              <div class="muted" style="font-size:12px">Disponible</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <p id="detail-desc" class="muted"></p>
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:8px;align-items:center;">
+            <button class="btn btn-primary" id="add-to-cart">Agregar al carrito</button>
+            <button class="btn btn-ghost" id="go-to-gallery">Volver a galería</button>
+          </div>
+
+<button id="btn-delete-detail" class="btn btn-danger" style="margin-top:15px; display:none;">
+  Eliminar publicación
+</button>
+
+
+          <div style="margin-top:18px">
+            <h4 style="margin:0 0 8px 0">Comentarios</h4>
+            <div id="comments-section" class="comments-scroll"></div>
+
+            <div style="margin-top:8px">
+              <textarea id="comment-text" placeholder="Deja un comentario..." style="width:100%;"></textarea>
+              <div style="display:flex;gap:8px;margin-top:8px">
+                <select id="comment-stars" class="select" style="width:100px">
+                  <option value="5">★★★★★</option>
+                  <option value="4">★★★★</option>
+                  <option value="3">★★★</option>
+                  <option value="2">★★</option>
+                  <option value="1">★</option>
+                </select>
+                <button class="btn btn-primary" id="post-comment">Publicar</button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="view-publish" class="view" aria-hidden>
+      <h3>Publicar Trabajo</h3>
+      <form id="publish-form">
+        <label>Título:</label>
+        <input type="text" id="pub-title" required />
+
+        <label>Descripción:</label>
+        <textarea id="pub-desc" required></textarea>
+
+        <label for="pub-category">Categoría:</label>
+        <select id="pub-category" required>
+          <option value="">-- Selecciona una categoría --</option>
+          <option value="Arte">🎨 Arte</option>
+          <option value="Diseño">💻 Diseño</option>
+          <option value="Software">🔧 Software</option>
+          <option value="Ilustración">🏠 Ilustración</option>
+          <option value="Fotografía">📸 Fotografía</option>
+          <option value="Mecanica"> 👷Mecanica</option>
+          <option value="hardware">🔋🖥️hardware</option>
+        </select>
+
+        <label>Precio:</label>
+        <input type="number" id="pub-price" required />
+
+        <label>Imagen (URL):</label>
+<div style="display: flex; align-items: center; gap: 8px;">
+  <input type="text" id="pub-image" required /> 
+  <button type="button" id="btn-upload-image" onclick="window.open('https://postimages.org/', '_blank')">
+    Subir Imagen
+  </button>
+</div>
+
+
+        <button type="button" id="btn-publish">Publicar</button>
+      </form>
+    </section>
+
+    <section id="view-cart" class="view" aria-hidden>
+      <h3>Carrito</h3>
+      <div style="display:flex;gap:12px;flex-direction:column">
+        <div class="cart-list" id="cart-list"></div>
+
+        <div class="summary">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="muted">Total</div>
+            <div style="font-weight:700" id="cart-total">S/. 0.00</div>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button class="btn btn-primary" id="btn-checkout">Pagar</button>
+            <button class="btn btn-ghost" id="continue-shopping">Seguir comprando</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-payment" class="view" aria-hidden>
+      <h3>Pagar</h3>
+      <div style="display:flex;gap:12px;flex-direction:column;max-width:640px">
+        <div class="summary">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="muted">Total a pagar</div>
+            <div style="font-weight:700" id="pay-total">S/. 0.00</div>
+          </div>
+          <div style="margin-top:10px" class="muted">Elija método de pago</div>
+        </div>
+
+        <div style="display:flex;gap:8px;">
+          <label style="display:flex;gap:8px;align-items:center;">
+            <input type="radio" name="pay-method" value="card" checked /> Tarjeta
+          </label>
+          <label style="display:flex;gap:8px;align-items:center;">
+            <input type="radio" name="pay-method" value="yape" /> Yape
+          </label>
+        </div>
+
+        <div id="card-form" style="display:block">
+          <input type="text" id="card-number" placeholder="Número de tarjeta" />
+          <div style="display:flex;gap:8px">
+            <input type="text" id="card-exp" placeholder="MM/AA" />
+            <input type="text" id="card-cvc" placeholder="CVC" />
+          </div>
+        </div>
+
+        <div id="yape-form" style="display:none">
+          <input type="text" id="yape-phone" placeholder="Número Yape (simulado)" />
+        </div>
+
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-primary" id="btn-pay">Pagar ahora</button>
+          <button class="btn btn-ghost" id="btn-pay-cancel">Cancelar</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-confirm" class="view" aria-hidden>
+      <div class="hero">
+        <h2>Pago exitoso</h2>
+        <p class="muted">Tu pedido ha sido enviado al vendedor. ¡Felicidades!</p>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="btn btn-primary" id="confirm-to-gallery">Volver a la galería</button>
+          <button class="btn btn-ghost" id="confirm-to-home">Ir al inicio</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-admin" class="view" aria-hidden>
+      <h3>Panel de administrador</h3>
+      <div class="pending-list" id="pending-list"></div>
+    </section>
+
+    <footer>
+      Galería Creativa — hecho con ❤ para estudiantes • Diseño moderno y limpio
+    </footer>
+  </div>
+
+  <!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <script src="galeria_vista.js"></script>
+  
+  <script src="galeria_firebase.js"></script> 
+
+</body>
+</html>

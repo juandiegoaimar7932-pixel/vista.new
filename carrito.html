@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito de Compras</title>
+  <link rel="stylesheet" href="carrito.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Carrito de Compras</h1>
+
+    <div class="main-content">
+  
+      <div class="carrito-container" id="cart-container">
+      </div>
+
+      <div class="payment-form" id="payment-form">
+        <button class="close-btn" id="btn-close-payment">✖</button>
+        <h2>Pago</h2>
+        <div class="total-precio" id="cart-total">Total: S/. 0.00</div>
+        <label for="pay-method">Método de pago:</label>
+        <select id="pay-method">
+          <option value="">Selecciona un método</option>
+          <option value="Yape">Yape</option>
+          <option value="Plin">Plin</option>
+          <option value="Tarjeta">Tarjeta</option>
+        </select>
+
+        <div id="payment-extra" style="margin-top:10px;"></div>
+        <button id="btn-pay" class="btn-pay">Finalizar Pago</button>
+      </div>
+    </div>
+
+    <button id="btn-show-payment" class="btn-pay">Pagar</button>
+    <button class="regresar-btn" id="btn-back">← Volver a galería</button>
+  </div>
+
+  <script src="carrito.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
