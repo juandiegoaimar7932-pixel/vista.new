@@ -135,7 +135,8 @@ btnPay.addEventListener('click', ()=>{
   paymentForm.style.display = 'none';
   window.location.href = 'index.html'; 
 });
-btnBack.addEventListener('click', ()=> window.location.href='Index.html');
+btnBack.addEventListener('click', ()=> window.location.href='index.html');
 
 renderCart();
+
 
